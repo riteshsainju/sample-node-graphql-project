@@ -1,0 +1,31 @@
+{
+  "name": "sample-node-graphql-project",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "nodemon --exec babel-node index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/riteshsainju/sample-node-graphql-project.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/riteshsainju/sample-node-graphql-project/issues"
+  },
+  "homepage": "https://github.com/riteshsainju/sample-node-graphql-project#readme",
+  "devDependencies": {
+    "babel-cli": "^6.26.0",
+    "babel-preset-env": "^1.7.0",
+    "babel-preset-stage-3": "^6.24.1",
+    "nodemon": "^2.0.1"
+  },
+  "dependencies": {
+    "apollo-server-express": "^2.9.12",
+    "graphql": "^14.5.8"
+  }
+}
