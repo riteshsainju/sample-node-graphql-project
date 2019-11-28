@@ -1,0 +1,26 @@
+{
+  "development": {
+    "username": "ritesh",
+    "password": "ritesh",
+    "database": "sample",
+    "host": "127.0.0.1",
+    "dialect": "postgres",
+    "operatorsAliases": false
+  },
+  "test": {
+    "username": "ritesh",
+    "password": "ritesh",
+    "database": "database_development",
+    "host": "127.0.0.1",
+    "dialect": "postgres",
+    "operatorsAliases": false
+  },
+  "production": {
+    "username": "ritesh",
+    "password": "ritesh",
+    "database": "database_development",
+    "host": "127.0.0.1",
+    "dialect": "postgres",
+    "operatorsAliases": false
+  }
+}
