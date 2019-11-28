@@ -1,8 +1,8 @@
 'use strict';
 module.exports = (sequelize, DataTypes) => {
   const UserProfile = sequelize.define('user_profile', {
-    first_name: DataTypes.STRING,
-    last_name: DataTypes.STRING,
+    firstName: DataTypes.STRING,
+    lastName: DataTypes.STRING,
     age: DataTypes.INTEGER
   }, {});
   UserProfile.associate = function(models) {

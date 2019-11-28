@@ -11,7 +11,20 @@ export default `
     allUsers: [User!]!
   }
 
+  input UserInput {
+    username: String!
+    email: String!
+    password: String!
+    profile: ProfileInput
+  }
+
+  input ProfileInput {
+    firstName: String
+    lastName: String
+  }
+
+
   type Mutation {
-    createUser(username: String!, email: String!, password: String!): User!
+    createUser(input:UserInput!): User
   }
 `

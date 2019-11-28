@@ -4,6 +4,18 @@ export default {
     allUsers: (parent, args, { models }) => models.User.findAll(),
   },
   Mutation: {
-    createUser: (parent, args, { models }) => models.User.create(args),
+    createUser: async(parent, {input}, { models }) => {
+    try { 
+      const user = await models.User.create(input)
+      const userId = user.id
+      await models.UserProfile.create({...input.profile,
+         userId: userId});
+      return user
+    }catch(err){
+      console.log(err)
+
+    }
+
+    },
   },
 };
