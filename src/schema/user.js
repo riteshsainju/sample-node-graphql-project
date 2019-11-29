@@ -23,8 +23,13 @@ export default `
     lastName: String
   }
 
+  type RegisterResponse {
+    success: Boolean!
+    user: User
+    error: String
+  }
 
   type Mutation {
-    createUser(input:UserInput!): User
+    register(input:UserInput!): RegisterResponse
   }
 `

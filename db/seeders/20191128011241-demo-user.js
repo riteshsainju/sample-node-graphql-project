@@ -1,4 +1,4 @@
-'use strict';
+const bcrypt = require('bcrypt')
 
 module.exports = {
   up: async (queryInterface) => {
@@ -9,14 +9,15 @@ module.exports = {
     }, ['id']);
 
     if(!user) {
-    await queryInterface.bulkInsert('users', [{
+      const hashedPassword = await bcrypt.hash('test@123', 12);
+    const a = await queryInterface.bulkInsert('users', [{
       username: 'admin',
       email: 'admin@demo.com',
-      password:'test@123',
+      password: hashedPassword,
       created_at: new Date(),
       updated_at: new Date()
     }])
-
+console.log(a)
     const users = await queryInterface.sequelize.query(
       `SELECT id from users;`
     );
