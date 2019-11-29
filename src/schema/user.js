@@ -11,7 +11,34 @@ export default `
     allUsers: [User!]!
   }
 
+  input UserInput {
+    username: String!
+    email: String!
+    password: String!
+    profile: ProfileInput
+  }
+
+  input ProfileInput {
+    firstName: String
+    lastName: String
+  }
+
+  type RegisterResponse {
+    success: Boolean!
+    user: User
+    errors: [Error!]
+  }
+
+  type LoginResponse {
+    success: Boolean!
+    token: String
+    refreshToken: String
+    errors: [Error!]
+  }
+
+
   type Mutation {
-    createUser(username: String!, email: String!, password: String!): User!
+    register(input:UserInput!): RegisterResponse!
+    login(email: String!, password: String!): LoginResponse!
   }
 `
