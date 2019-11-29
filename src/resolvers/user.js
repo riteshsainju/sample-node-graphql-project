@@ -1,7 +1,6 @@
 import bcrypt from 'bcrypt'
 import _ from 'lodash';
-import e from 'express';
-
+import { tryLogin } from '../auth';
 
 export default {
   Query: {
@@ -9,6 +8,9 @@ export default {
     allUsers: (parent, args, { models }) => models.User.findAll(),
   },
   Mutation: {
+    login: (parent, { email, password }, { models, SECRET, SECRET2 }) =>
+      tryLogin(email, password, models, SECRET, SECRET2),
+
     register: async(parent, {input}, { models }) => {
     try { 
       const hashedPassword = await bcrypt.hash(input.password, 12);
@@ -22,10 +24,10 @@ export default {
           user,
         };    
     }catch(err){
-      console.log(err)
+      console.log(err.name)
       return {
         success: false,
-        error: err.message,
+        errors: [{ path: 'name', message: err.message }],
       };
     }
 
