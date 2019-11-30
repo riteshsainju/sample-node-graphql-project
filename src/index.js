@@ -5,9 +5,10 @@ import { fileLoader, mergeTypes, mergeResolvers } from 'merge-graphql-schemas';
 import cors from 'cors';
 import jwt from 'jsonwebtoken';
 import models from './models';
+import 'dotenv/config'
 
-const SECRET = 'asiodfhoi1hoi23jnl1kejd';
-const SECRET2 = 'asiodfhoi1hoi23jnl1kejasdjlkfasdd';
+const SECRET = process.env.SECRET
+const SECRET2 = process.env.SECRET2
 
 const app = express();
 
