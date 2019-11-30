@@ -1,12 +1,14 @@
 import bcrypt from 'bcrypt'
 import _ from 'lodash';
 import { tryLogin } from '../auth';
+import requiresAuth from '../permissions';
 
 export default {
   Query: {
-    getUser: (parent, { id }, { models }) => models.User.findOne({ where: { id } }),
-    allUsers: (parent, args, { models }) => models.User.findAll(),
+    getUser: requiresAuth.createResolver((parent, { id }, { models }) => models.User.findOne({ where: { id } })),
+    allUsers: requiresAuth.createResolver((parent, args, { models,user }) =>models.User.findAll())
   },
+
   Mutation: {
     login: (parent, { email, password }, { models, SECRET, SECRET2 }) =>
       tryLogin(email, password, models, SECRET, SECRET2),
@@ -18,13 +20,11 @@ export default {
       const userId = user.id
       await models.UserProfile.create({...input.profile,
          userId: userId});
-         console.log("success")
       return {
           success: true,
           user,
         };    
     }catch(err){
-      console.log(err.name)
       return {
         success: false,
         errors: [{ path: 'name', message: err.message }],
